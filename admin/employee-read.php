@@ -1,26 +1,27 @@
 <?php include "include/header.php"; ?>
 <?php include "include/sidebar.php"; ?>
 <?php 
-function getBranches(){
+function getEmployees(){
   include "include/dbconfig.php"; 
-  $sql = "SELECT * FROM `branches`";
+  $sql = "SELECT * FROM `employees` ORDER BY `id` DESC";
   $res = mysqli_query($conn, $sql);
   while($row = mysqli_fetch_assoc($res))
   {
     extract($row);
     echo '<tr>
               <td>'.$id.'</td>
-              <td>'.$name.'</td>
+              <td>'.$employee_name.'</td>
+              <td>'.$contact.'</td>
               <td><span class="tag tag-success">'.$status.'</span></td>
               <td>
-              <a href="branch-edit.php?id='.$id.'&action=edit">
-                <button type="button" class="btn btn-sm"><i class="fa fa-edit"></i></button>
-              </a>
-              <a href="branch-edit.php?id='.$id.'&action=delete">
-                <button type="button" class="btn btn-sm"><i class="fa fa-trash"></i></button>
-              </a>
-            </td>
-         </tr>';
+                <a href="employee-edit.php?id='.$id.'"&action=edit>
+                  <button type="button" class="btn btn-sm"><i class="fa fa-edit"></i></button>
+                </a>
+                <a href="employee-edit?id='.$id.'"&action=delete>
+                  <button type="button" class="btn btn-sm"><i class="fa fa-trash"></i></button>
+                </a>
+              </td>
+          </tr>';
   }
 }
 
@@ -32,20 +33,20 @@ function getBranches(){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Branches</h1>
+            <h1>Employees</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Branches</li>
+              <li class="breadcrumb-item active">Employees</li>
             </ol>
           </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
     <section class="content">
-      <?php if(isset($_SESSION['success_m
-      ']))?>
+    
+      
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
@@ -59,11 +60,11 @@ function getBranches(){
           <?php }?>
           <div class="card">
               <div class="card-header">
-                <h3 class="card-title">All Branches</h3>
+                <h3 class="card-title">All Employees</h3>
 
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 250px;">
-                  <a href="branch-create.php"><button class="btn btn-sm btn-primary">Add New</button></a>
+                  <a href="employee-create.php"><button class="btn btn-sm btn-primary">Add New</button></a>
                     &nbsp;
                     <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
@@ -77,17 +78,19 @@ function getBranches(){
               </div>
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap table-sm">
+                <table class="table table-hover table-sm text-nowrap">
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>Branch Name</th>
+                     <!--  <th>Branch</th> -->
+                      <th>Employee Name</th>
+                      <th>Contact</th>
                       <th>Status</th>
                       <th></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <?php getBranches(); ?>
+                    <?php getEmployees(); ?>
                   </tbody>
                 </table>
               </div>

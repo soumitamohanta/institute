@@ -41,21 +41,21 @@
           
             </ul>
           </li>
-          <!-- <li class="nav-item">
+          <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="far fa-circle nav-icon"></i>
               <p>
                 Widgets
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>
-          </li> -->
+          </li>
 
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                Branches
+                Master
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -64,6 +64,12 @@
                 <a href="branch-read.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Manage Branches</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="institute-read.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Manage Institutes</p>
                 </a>
               </li>
             </ul>
