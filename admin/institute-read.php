@@ -4,7 +4,9 @@
 
 function getBranches(){
   include "include/dbconfig.php"; 
-  $sql = "SELECT * FROM `institutes` INNER JOIN `branches` ON `institutes`.branch_id = `branches`.id";
+  $sql = "SELECT `institutes`.*, `branches`.id AS `branch_id`,`users`.`user_id`, `branches`.name  FROM `institutes`
+          INNER JOIN `branches` ON `institutes`.`branch_id` = `branches`.id
+          INNER JOIN `users` ON `users`.`org_id` = `institutes`.id";
   $res = mysqli_query($conn, $sql);
   
   while($row = mysqli_fetch_assoc($res))
@@ -14,11 +16,18 @@ function getBranches(){
               <td>'.$id.'</td>
               <td>'.$name.'</td>
               <td width="45%">'.$institute_name.'</td>
-              <td>'.$address.'</td>
               <td>'.$contact.'</td>
-              <td>'.$institute_code.'</td>
+              <td>'.$address.'</td>
+              <td>'.$user_id.'</td>
               <td><span class="tag tag-success">'.$status.'</span></td>
-              <td ><button type="button" class="btn btn-sm"><i class="fa fa-edit"></i></button><button type="button" class="btn btn-sm"><i class="fa fa-trash"></i></button></td>
+              <td>
+                <a href="institute-edit.php?id='.$id.'"&action=edit>
+                  <button type="button" class="btn btn-sm"><i class="fa fa-edit"></i></button>
+                </a>
+                <a href="institute-edit?id='.$id.'"&action=delete>
+                  <button type="button" class="btn btn-sm"><i class="fa fa-trash"></i></button>
+                </a>
+              </td>
              
          </tr>';
   }
